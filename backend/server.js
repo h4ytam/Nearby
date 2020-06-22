@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const user = require("./routes/user");
 const shop = require("./routes/shop");
@@ -14,7 +15,8 @@ app.use(bodyParser.json());
 app.use(
   express.urlencoded({
     extended: false,
-  })
+  }),
+  cors()
 );
 app.get("/", (req, res) => {
   res.json({ message: "API working" });

@@ -37,7 +37,7 @@ class Signup extends Component {
           <Button variant="contained" color="primary" style={signUpBtn}>
             Sign up
           </Button>
-          <Link to="/login">Return Login</Link>
+          <Link to="/">Return Login</Link>
         </Container>
       </div>
     );

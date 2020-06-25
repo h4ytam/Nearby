@@ -36,8 +36,13 @@ export const Login = ({ login, errors, isAuthenticated }) => {
     <div style={wrapper}>
       <h1>Login</h1>
       <Container>
-        {errors && errors.length
-          ? errors.map((error) => (
+        {errors.msg ? (
+          <div className="error">
+            <p style={errorMsg}>{errors.msg}</p>
+          </div>
+        ) : null}
+        {errors.errors && errors.errors.length
+          ? errors.errors.map((error) => (
               <div className="error" key={error.msg}>
                 <p style={errorMsg}>{error.msg}</p>
               </div>
@@ -82,7 +87,7 @@ export const Login = ({ login, errors, isAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  errors: state.auth.errors.errors,
+  errors: state.auth.errors,
 });
 
 export default connect(mapStateToProps, { login })(Login);

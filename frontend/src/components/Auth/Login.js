@@ -29,7 +29,7 @@ export const Login = ({ login, errors, isAuthenticated }) => {
     login(email, password);
   };
   if (isAuthenticated) {
-    return <Redirect to="/preferredShop" />;
+    return <Redirect to="/" />;
   }
 
   return (

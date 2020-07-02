@@ -1,24 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
-import { connect } from "react-redux";
-import Login from "./components/Auth/Login";
+import { Redirect } from "react-router-dom";
 
-class PrivateRoute extends Component {
-  render() {
-    const { component, isAuthenticated, ...restProps } = this.props;
-    const Comp = component;
-
-    return (
-      <Route
-        {...restProps}
-        render={() => (isAuthenticated ? <Comp /> : <Login />)}
-      />
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps)(PrivateRoute);
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      localStorage.getItem("token") ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{ pathname: "/login", state: { from: props.location } }}
+        />
+      )
+    }
+  />
+);
+export default PrivateRoute;

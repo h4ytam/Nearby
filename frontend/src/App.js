@@ -9,8 +9,9 @@ import rootReducer from "./Reducers/index";
 
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
-import PreferredShop from "./components/Shop/PreferredShop";
+import AllShops from "./components/Shop/AllShops";
 import PrivateRoute from "./PrivateRoute";
+import NavBar from "./components/NavBar";
 
 function App() {
   const store = createStore(
@@ -23,13 +24,10 @@ function App() {
       <Router>
         <div className="App">
           <Switch>
-            <Route exact path="/" component={Login}></Route>
-            <Route exact path="/signup" component={Signup}></Route>
-            <PrivateRoute
-              exact
-              path="/preferredShop"
-              component={PreferredShop}
-            ></PrivateRoute>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <PrivateRoute exact path="/" component={AllShops}></PrivateRoute>
+            <PrivateRoute component={NavBar}></PrivateRoute>
           </Switch>
         </div>
       </Router>

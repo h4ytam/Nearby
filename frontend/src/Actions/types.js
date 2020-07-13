@@ -3,3 +3,7 @@ export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
 export const LOGOUT = "LOGOUT";
+export const LIKE_SHOP = "LIKE_SHOP";
+export const REMOVE_SHOP = "REMOVE_SHOP";
+export const LOAD_ALL_SHOPS = "LOAD_AL_SHOPS";
+export const LOAD_PREFERRED_SHOPS = "LOAD_PREFERRED_SHOPS";

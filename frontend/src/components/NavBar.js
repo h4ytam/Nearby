@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 2,
   },
 }));
-export const NavBar = ({ logout, isAuthenticated }) => {
+export const NavBar = ({ logout, token }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Redirect to="/login" />;
   }
 
@@ -44,10 +44,16 @@ export const NavBar = ({ logout, isAuthenticated }) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">
-            <StorefrontIcon />
+            <Link to="/">
+              {" "}
+              <StorefrontIcon />
+            </Link>
           </Typography>
           <Typography variant="h5" className={classes.favorites}>
-            <FavoriteIcon />
+            <Link to="preferredShop">
+              {" "}
+              <FavoriteIcon />
+            </Link>
           </Typography>
 
           <div>

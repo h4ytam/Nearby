@@ -13,22 +13,17 @@ router.get("/allShop", async (req, res) => {
     });
   }
 });
-router.get("/preferredShop", async (req, res) => {
+router.get("/preferredShop/:userId", async (req, res) => {
   try {
-    const userId = req.body.id;
-    const singleUser = await User.findById(userId)
-      .populate("preferredShop")
-      .exec((err, data) => {
-        if (err) {
-          console.log(err);
-        } else {
-          res.status(200).json(data.preferredShop);
-        }
-      });
+    const { userId } = req.params;
+    const data = await User.findById(userId).populate("preferredShop");
+
+    res.status(200).json(data.preferredShop);
   } catch (error) {
-    res.status(404);
+    res.status(404).send();
   }
 });
+
 router.post("/likeShop/:id", async (req, res) => {
   try {
     const userId = req.body.id;

@@ -49,8 +49,9 @@ export const NavBar = ({ logout, token }) => {
               <StorefrontIcon />
             </Link>
           </Typography>
+
           <Typography variant="h5" className={classes.favorites}>
-            <Link to="preferredShop">
+            <Link to="/preferredShop">
               {" "}
               <FavoriteIcon />
             </Link>

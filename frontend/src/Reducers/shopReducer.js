@@ -17,6 +17,11 @@ export default function (state = initialState, action) {
         ...state,
         shops: action.payload,
       };
+    case LOAD_PREFERRED_SHOPS:
+      return {
+        ...state,
+        preferredShops: action.payload,
+      };
     default:
       return state;
   }

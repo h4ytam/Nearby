@@ -27,11 +27,11 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <PrivateRoute exact path="/" component={AllShops}></PrivateRoute>
-            <PrivateRoute
+            <Route
               exact
               path="/preferredShop"
               component={PreferredShop}
-            ></PrivateRoute>
+            ></Route>
           </Switch>
         </div>
       </Router>

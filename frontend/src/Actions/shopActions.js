@@ -25,3 +25,26 @@ export const loadAllShops = () => async (dispatch) => {
     return err;
   }
 };
+export const loadPreferredShops = () => async (dispatch) => {
+  const USER_ID = localStorage.getItem("userID");
+  console.log(USER_ID);
+  try {
+    const res = await axios(
+      `http://localhost:5000/shop/preferredShop/${USER_ID}`,
+      {
+        mode: "cors",
+        headers: {
+          contentType: "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    dispatch({
+      type: LOAD_PREFERRED_SHOPS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};

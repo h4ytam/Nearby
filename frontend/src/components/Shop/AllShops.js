@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavBar } from "../NavBar";
 import { connect } from "react-redux";
 import { logout } from "../../Actions/authActions";
-import { loadAllShops } from "../../Actions/shopActions";
+import { loadAllShops, like } from "../../Actions/shopActions";
 import {
   Card,
   CardActionArea,
@@ -13,11 +13,14 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-function AllShops({ loadAllShops, token, logout, shops }) {
+function AllShops({ loadAllShops, token, logout, shops, like }) {
   // console.log(props);
   useEffect(() => {
     loadAllShops();
   }, []);
+  const likeShop = (shop) => {
+    like(shop);
+  };
   const card = {
     width: " 400px",
     height: "380px",
@@ -60,7 +63,12 @@ function AllShops({ loadAllShops, token, logout, shops }) {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" variant="contained" color="primary">
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  onClick={() => likeShop(shop)}
+                >
                   Like
                 </Button>
                 <Button size="small" variant="contained" color="secondary">
@@ -82,4 +90,6 @@ const mapStateToProps = (state) => ({
   shops: state.shop.shops,
 });
 
-export default connect(mapStateToProps, { logout, loadAllShops })(AllShops);
+export default connect(mapStateToProps, { logout, loadAllShops, like })(
+  AllShops
+);

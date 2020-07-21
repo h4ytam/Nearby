@@ -24,10 +24,11 @@ router.get("/preferredShop/:userId", async (req, res) => {
   }
 });
 
-router.post("/likeShop/:id", async (req, res) => {
+router.post("/likeShop/:userId", async (req, res) => {
   try {
-    const userId = req.body.id;
-    const shopId = req.params.id;
+    const { userId } = req.params;
+    const shopId = req.body.id;
+    // const { shopId } = req.body;
     const singleUser = await User.findById(userId);
 
     if (singleUser.preferredShop.includes(shopId)) {
@@ -43,14 +44,16 @@ router.post("/likeShop/:id", async (req, res) => {
   }
 });
 
-router.delete("/removeShop/:id", async (req, res) => {
+router.delete("/removeShop/:userId", async (req, res) => {
   try {
-    const userId = req.body.id;
-    const shopId = req.params.id;
-
+    const { userId } = req.params;
+    const shopId = req.body.id;
+    // console.log(userId);
+    // console.log(shopId);
     const user = await User.findById(userId);
     user.preferredShop = user.preferredShop.filter(
       (id) => id.toString() !== shopId
+      //
     );
     await user.save();
 

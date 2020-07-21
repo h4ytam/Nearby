@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavBar } from "../NavBar";
 import { connect } from "react-redux";
 import { logout } from "../../Actions/authActions";
-import { loadPreferredShops } from "../../Actions/shopActions";
+import { loadPreferredShops, removeShop } from "../../Actions/shopActions";
 import {
   Card,
   CardActionArea,
@@ -13,10 +13,20 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-function PreferredShop({ preferredShops, loadPreferredShops, token }) {
+function PreferredShop({
+  preferredShops,
+  loadPreferredShops,
+  token,
+  removeShop,
+}) {
   useEffect(() => {
     loadPreferredShops();
   }, []);
+
+  const remove = (preferred) => {
+    console.log(preferred);
+    removeShop(preferred);
+  };
   const card = {
     width: " 400px",
     height: "380px",
@@ -63,7 +73,12 @@ function PreferredShop({ preferredShops, loadPreferredShops, token }) {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" variant="contained" color="secondary">
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => remove(preferred)}
+                >
                   Remove
                 </Button>
               </CardActions>
@@ -82,6 +97,8 @@ const mapStateToProps = (state) => ({
   preferredShops: state.shop.preferredShops,
 });
 
-export default connect(mapStateToProps, { logout, loadPreferredShops })(
-  PreferredShop
-);
+export default connect(mapStateToProps, {
+  logout,
+  loadPreferredShops,
+  removeShop,
+})(PreferredShop);

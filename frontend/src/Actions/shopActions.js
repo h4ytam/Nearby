@@ -27,7 +27,7 @@ export const loadAllShops = () => async (dispatch) => {
 };
 export const loadPreferredShops = () => async (dispatch) => {
   const USER_ID = localStorage.getItem("userID");
-  console.log(USER_ID);
+  // console.log(USER_ID);
   try {
     const res = await axios(
       `http://localhost:5000/shop/preferredShop/${USER_ID}`,
@@ -41,6 +41,40 @@ export const loadPreferredShops = () => async (dispatch) => {
     );
     dispatch({
       type: LOAD_PREFERRED_SHOPS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+export const like = (shop) => async (dispatch) => {
+  const USER_ID = localStorage.getItem("userID");
+  // console.log(shop);
+  try {
+    const res = await axios.post(
+      `http://localhost:5000/shop/likeShop/${USER_ID}`,
+      { id: shop._id }
+    );
+    dispatch({
+      type: LIKE_SHOP,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+export const removeShop = (preferred) => async (dispatch) => {
+  const USER_ID = localStorage.getItem("userID");
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/shop/removeShop/${USER_ID}`,
+      { id: preferred }
+    );
+    console.log(preferred);
+    dispatch({
+      type: REMOVE_SHOP,
       payload: res.data,
     });
   } catch (err) {

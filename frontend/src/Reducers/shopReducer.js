@@ -22,6 +22,28 @@ export default function (state = initialState, action) {
         ...state,
         preferredShops: action.payload,
       };
+    case LIKE_SHOP: {
+      let { preferredShops } = state;
+      const newPreferredShops = preferredShops.filter(
+        (item) => item !== action.payload
+      );
+      return {
+        ...state,
+        preferredShops: newPreferredShops,
+      };
+    }
+    case REMOVE_SHOP: {
+      let { preferredShops } = state;
+      const newPreferredShops = preferredShops.filter(
+        (item) => item._id !== action.payload
+        // item._id !== action.payload
+      );
+      console.log(newPreferredShops);
+      return {
+        ...state,
+        preferredShops: newPreferredShops,
+      };
+    }
     default:
       return state;
   }

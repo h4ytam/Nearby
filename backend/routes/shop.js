@@ -48,8 +48,8 @@ router.delete("/removeShop/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const shopId = req.body.id;
-    // console.log(userId);
-    // console.log(shopId);
+    console.log(userId);
+    console.log(shopId);
     const user = await User.findById(userId);
     user.preferredShop = user.preferredShop.filter(
       (id) => id.toString() !== shopId

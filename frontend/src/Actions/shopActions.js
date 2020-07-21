@@ -70,13 +70,14 @@ export const removeShop = (preferred) => async (dispatch) => {
   try {
     const res = await axios.delete(
       `http://localhost:5000/shop/removeShop/${USER_ID}`,
-      { id: preferred }
+      { id: preferred._id }
     );
-    console.log(preferred);
+    // console.log(preferred);
     dispatch({
       type: REMOVE_SHOP,
       payload: res.data,
     });
+    console.log(res.data);
   } catch (err) {
     console.log(err);
     return err;

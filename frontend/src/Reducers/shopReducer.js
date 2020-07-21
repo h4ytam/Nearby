@@ -35,7 +35,7 @@ export default function (state = initialState, action) {
     case REMOVE_SHOP: {
       let { preferredShops } = state;
       const newPreferredShops = preferredShops.filter(
-        (item) => item._id !== action.payload
+        (item) => item !== [action.payload]
         // item._id !== action.payload
       );
       console.log(newPreferredShops);

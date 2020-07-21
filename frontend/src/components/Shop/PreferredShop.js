@@ -24,7 +24,7 @@ function PreferredShop({
   }, []);
 
   const remove = (preferred) => {
-    console.log(preferred);
+    // console.log(preferred);
     removeShop(preferred);
   };
   const card = {

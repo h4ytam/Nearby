@@ -22,9 +22,7 @@ function PreferredShop({
   useEffect(() => {
     loadPreferredShops();
   }, []);
-
   const remove = (preferred) => {
-    // console.log(preferred);
     removeShop(preferred);
   };
   const card = {
@@ -52,7 +50,7 @@ function PreferredShop({
       <Container>
         <div style={cardFlex}>
           {preferredShops.map((preferred) => (
-            <Card style={card}>
+            <Card style={card} key={preferred._id}>
               <CardActionArea>
                 <CardMedia
                   style={cardImg}

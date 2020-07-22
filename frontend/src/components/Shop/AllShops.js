@@ -46,7 +46,7 @@ function AllShops({ loadAllShops, token, logout, shops, like }) {
       <Container>
         <div style={cardFlex}>
           {shops.map((shop) => (
-            <Card style={card}>
+            <Card style={card} key={shop._id}>
               <CardActionArea>
                 <CardMedia style={cardImg} component="img" image={shop.image} />
                 <CardContent>

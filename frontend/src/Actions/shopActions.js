@@ -69,15 +69,14 @@ export const removeShop = (preferred) => async (dispatch) => {
   const USER_ID = localStorage.getItem("userID");
   try {
     const res = await axios.delete(
-      `http://localhost:5000/shop/removeShop/${USER_ID}`,
-      { id: preferred._id }
+      `http://localhost:5000/shop/removeShop/${USER_ID}/${preferred._id}`
     );
-    // console.log(preferred);
     dispatch({
       type: REMOVE_SHOP,
-      payload: res.data,
+      payload: preferred,
     });
-    console.log(res.data);
+    // console.log(res.data);
+    // console.log(preferred);
   } catch (err) {
     console.log(err);
     return err;

@@ -29,6 +29,8 @@ router.post("/likeShop/:userId", async (req, res) => {
     const { userId } = req.params;
     const shopId = req.body.id;
     // const { shopId } = req.body;
+    console.log(userId);
+    console.log(shopId);
     const singleUser = await User.findById(userId);
 
     if (singleUser.preferredShop.includes(shopId)) {
@@ -44,11 +46,11 @@ router.post("/likeShop/:userId", async (req, res) => {
   }
 });
 
-router.delete("/removeShop/:userId", async (req, res) => {
+router.delete("/removeShop/:userId/:shopId", async (req, res) => {
   try {
     const { userId } = req.params;
-    const shopId = req.body.id;
-    console.log(userId);
+    const shopId = req.params;
+    // console.log(userId);
     console.log(shopId);
     const user = await User.findById(userId);
     user.preferredShop = user.preferredShop.filter(
